@@ -118,14 +118,13 @@ context("Resize", () => {
 
   it("Should increase and reduce row height on scrolled view with content in vertical axis", () => { // ✅
     const RESIZE_HEIGHT = 100;
-    const SCROLL = 200;
+    const SCROLL = 60;
 
     utils.scrollTo(0, SCROLL);
     utils.resizeRow(1, SCROLL + (SCROLL % config.cellHeight), RESIZE_HEIGHT, {
       beforePointerUp: () => {
         utils.resizeHint().should("be.visible");
-        // 🟠 TODO - hint should contain exact value
-        // utils.resizeHint().and('contain.text', `Height: ${config.cellHeight + RESIZE_HEIGHT}px`)
+        utils.resizeHint().and('contain.text', `Height: ${config.cellHeight + RESIZE_HEIGHT}px`)
       },
     });
 
@@ -137,8 +136,7 @@ context("Resize", () => {
     utils.resizeRow(1, SCROLL + RESIZE_HEIGHT + (SCROLL % config.cellHeight), -RESIZE_HEIGHT, {
       beforePointerUp: () => {
         utils.resizeHint().should("be.visible");
-        // 🟠 TODO - hint should contain exact value
-        // utils.resizeHint().and('contain.text', `Height: ${config.cellHeight}px`)
+        utils.resizeHint().and('contain.text', `Height: ${config.cellHeight+3}px`)
       },
     });
 
