@@ -158,4 +158,33 @@ context("Resize", () => {
       config.cellWidth + RESIZE_WIDTH
     );
   });
+  
+  // rows height
+  it("should increase and reduce row height on scrolled view with content in vertical axis", () => {
+    // ✅
+    const RESIZE_HEIGHT = 40;
+
+    utils.scrollTo(0, 200);
+    utils.resizeRow(
+      utils.getCellXCenter(),
+      config.cellHeight - 2,
+      RESIZE_HEIGHT
+    );
+    cy.wait(200);
+
+    utils.assertElementHeightIsEqual(
+      utils.getCell(0, 0),
+      config.cellHeight + RESIZE_HEIGHT
+    );
+
+    utils.resizeRow(
+      utils.getCellXCenter(),
+      config.cellHeight + RESIZE_HEIGHT,
+      -RESIZE_HEIGHT
+    );
+    cy.wait(200);
+
+    utils.assertElementHeightIsEqual(utils.getCell(0, 0), config.cellHeight);
+  });
+
 });
