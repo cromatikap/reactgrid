@@ -22,7 +22,7 @@ export const config: TestConfig = {
     cellHeight: 40,
     cellWidth: 150,
     minCellWidth: 40,
-    minCellHeight: 30,
+    minCellHeight: 25,
     fillHandleWidth: 18,
 
     columns: 30,
