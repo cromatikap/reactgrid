@@ -190,7 +190,8 @@ context("Resize", () => {
   it("should shrink row height to min height", () => {
     // ✅
     const RESIZE_HEIGHT = -config.cellHeight;
-    
+
+    utils.scrollTo(0, 20);
     utils.resizeRow(
       utils.getCellXCenter(),
       config.cellHeight,
