@@ -162,7 +162,7 @@ context("Resize", () => {
   // rows height
   it("should increase and reduce row height on scrolled view with content in vertical axis", () => {
     // ✅
-    const RESIZE_HEIGHT = 40;
+    const RESIZE_HEIGHT = config.cellHeight;
 
     utils.scrollTo(0, 200);
     utils.resizeRow(
@@ -185,6 +185,21 @@ context("Resize", () => {
     cy.wait(200);
 
     utils.assertElementHeightIsEqual(utils.getCell(0, 0), config.cellHeight);
+  });
+
+  it("should shrink row height to min height", () => {
+    // ✅
+    const RESIZE_HEIGHT = -config.cellHeight;
+    
+    utils.resizeRow(
+      utils.getCellXCenter(),
+      config.cellHeight,
+      RESIZE_HEIGHT
+    );
+    cy.wait(200);
+
+    utils.assertElementHeightIsEqual(utils.getCell(0, 0), config.minCellHeight);
+
   });
 
 });
